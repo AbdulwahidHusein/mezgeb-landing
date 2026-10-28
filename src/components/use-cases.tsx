@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { FrameLines } from "@/components/frame-lines";
 import { useI18n } from "@/components/language-provider";
 import { cn } from "@/lib/utils";
 
@@ -17,51 +17,55 @@ export function UseCases() {
   return (
     <section
       id="use-cases"
-      className={cn("scroll-mt-20 section-pad", isAm && "font-ethiopic")}
+      className={cn("scroll-mt-20", isAm && "font-ethiopic")}
       aria-labelledby="use-cases-heading"
     >
-      <div className="container-site">
-        <div className="max-w-2xl">
+      <FrameLines
+        grid
+        dots="both"
+        className="px-5 py-20 sm:px-8 sm:py-24 lg:px-12 lg:py-[112px]"
+      >
+        <div className="mx-auto flex max-w-[744px] flex-col items-center gap-3 text-center">
           <p className="eyebrow">{t.useCases.eyebrow}</p>
           <h2
             id="use-cases-heading"
-            className="mt-4 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.2]"
+            className={cn(
+              "text-[2rem] font-medium tracking-[-0.02em] text-white sm:text-4xl lg:text-[48px] lg:leading-[57.6px]",
+              !isAm && "font-display"
+            )}
           >
             {t.useCases.headline}
           </h2>
-          <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-            {t.useCases.body}
-          </p>
+          <p className="mt-2 max-w-[620px] paragraph-regular">{t.useCases.body}</p>
         </div>
 
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-12">
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-12">
           {t.useCases.items.map((item, i) => (
-            <Card
-              key={item.category}
-              className={cn(
-                "border-border bg-card shadow-none transition hover:bg-secondary/60",
-                spans[i]
-              )}
-            >
-              <CardHeader>
-                <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
+            <div key={item.category} className={cn("luna-card", spans[i])}>
+              <div className="relative luna-card-inner h-full">
+                <div
+                  className="accent-line-sm absolute left-[34px] top-0"
+                  aria-hidden="true"
+                />
+                <p className="text-[12px] text-[var(--neutral-400)]">
                   {item.category}
                 </p>
-                <CardTitle className="text-xl text-foreground">
+                <h3
+                  className={cn(
+                    "mt-3 text-xl font-medium text-white",
+                    !isAm && "font-display"
+                  )}
+                >
                   {item.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="max-w-md text-base leading-relaxed text-muted-foreground">
-                  {item.copy}
-                </p>
-              </CardContent>
-            </Card>
+                </h3>
+                <p className="mt-3 max-w-md paragraph-regular">{item.copy}</p>
+              </div>
+            </div>
           ))}
         </div>
 
-        <p className="mt-10 text-sm text-muted-foreground">{t.useCases.note}</p>
-      </div>
+        <p className="mt-10 text-center paragraph-regular">{t.useCases.note}</p>
+      </FrameLines>
     </section>
   );
 }

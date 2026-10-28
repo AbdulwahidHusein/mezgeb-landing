@@ -23,11 +23,14 @@ export function FAQ() {
           <p className="eyebrow">{t.faq.eyebrow}</p>
           <h2
             id="faq-heading"
-            className="mt-4 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl"
+            className={cn(
+              "mt-3 text-[2rem] font-medium tracking-[-0.02em] text-white sm:text-4xl",
+              !isAm && "font-display"
+            )}
           >
             {t.faq.headline}
           </h2>
-          <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
+          <p className="mt-4 paragraph-regular text-[15px]">
             {t.faq.subheadline}
           </p>
         </div>
@@ -37,12 +40,17 @@ export function FAQ() {
             <AccordionItem
               key={`${item.q}-${i}`}
               value={`item-${i}`}
-              className="border-border"
+              className="border-[var(--neutral-800)]"
             >
-              <AccordionTrigger className="text-left text-lg text-foreground hover:no-underline hover:text-foreground">
+              <AccordionTrigger
+                className={cn(
+                  "text-left text-lg text-white hover:no-underline hover:text-white",
+                  !isAm && "font-display font-medium"
+                )}
+              >
                 {item.q}
               </AccordionTrigger>
-              <AccordionContent className="text-base leading-relaxed text-muted-foreground">
+              <AccordionContent className="paragraph-regular text-[15px]">
                 {item.a}
               </AccordionContent>
             </AccordionItem>

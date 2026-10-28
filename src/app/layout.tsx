@@ -1,10 +1,21 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Noto_Sans_Ethiopic } from "next/font/google";
+import {
+  Bricolage_Grotesque,
+  Geist_Mono,
+  Inter,
+  Noto_Sans_Ethiopic,
+} from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+});
+
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-display",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 const geistMono = Geist_Mono({
@@ -33,9 +44,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${notoEthiopic.variable} dark h-full antialiased`}
+      className={`${inter.variable} ${bricolage.variable} ${geistMono.variable} ${notoEthiopic.variable} dark h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col font-sans">{children}</body>
+      <body className="relative flex min-h-full flex-col overflow-x-hidden font-sans">
+        {children}
+      </body>
     </html>
   );
 }

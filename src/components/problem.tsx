@@ -1,6 +1,6 @@
 "use client";
 
-import { Separator } from "@/components/ui/separator";
+import { FrameLines } from "@/components/frame-lines";
 import { useI18n } from "@/components/language-provider";
 import { cn } from "@/lib/utils";
 
@@ -9,45 +9,56 @@ export function Problem() {
 
   return (
     <section
-      className={cn("section-pad", isAm && "font-ethiopic")}
+      className={cn("relative", isAm && "font-ethiopic")}
       aria-labelledby="problem-heading"
     >
-      <div className="container-site">
-        <div className="max-w-3xl">
+      <FrameLines
+        grid
+        dots="both"
+        className="px-5 py-20 sm:px-8 sm:py-24 lg:px-12 lg:py-[112px]"
+      >
+        <div className="mx-auto flex max-w-[744px] flex-col items-center gap-3 text-center">
           <p className="eyebrow">{t.problem.eyebrow}</p>
           <h2
             id="problem-heading"
-            className="mt-4 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.2]"
+            className={cn(
+              "text-[2rem] font-medium tracking-[-0.02em] text-white sm:text-4xl lg:text-[48px] lg:leading-[57.6px]",
+              !isAm && "font-display"
+            )}
           >
             {t.problem.headline}
           </h2>
-          <div className="mt-6 space-y-4 text-lg leading-relaxed text-muted-foreground">
+          <div className="mt-3 max-w-[620px] space-y-3 paragraph-regular">
             <p>{t.problem.body1}</p>
             <p>{t.problem.body2}</p>
           </div>
         </div>
 
-        <Separator className="mt-14 bg-border" />
-
-        <div>
+        <div className="mt-14 grid gap-6 md:grid-cols-3">
           {t.problem.items.map((item) => (
-            <div
-              key={item.num}
-              className="grid gap-4 border-b border-border py-10 sm:grid-cols-[7rem_1fr] lg:grid-cols-[8rem_minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-12"
-            >
-              <span className="font-mono text-3xl font-medium tracking-tight text-muted-foreground sm:text-4xl">
-                {item.num}
-              </span>
-              <h3 className="text-xl font-semibold tracking-tight text-foreground sm:pt-1.5 lg:text-2xl">
-                {item.title}
-              </h3>
-              <p className="text-base leading-relaxed text-muted-foreground sm:col-span-2 lg:col-span-1 lg:pt-2 lg:text-lg">
-                {item.copy}
-              </p>
+            <div key={item.num} className="luna-card">
+              <div className="relative luna-card-inner !p-6 sm:!p-7">
+                <div
+                  className="accent-line-sm absolute left-6 top-0 sm:left-7"
+                  aria-hidden="true"
+                />
+                <span className="font-mono text-[13px] text-[var(--neutral-400)]">
+                  {item.num}
+                </span>
+                <h3
+                  className={cn(
+                    "mt-4 text-xl font-medium tracking-tight text-white",
+                    !isAm && "font-display"
+                  )}
+                >
+                  {item.title}
+                </h3>
+                <p className="mt-3 paragraph-regular">{item.copy}</p>
+              </div>
             </div>
           ))}
         </div>
-      </div>
+      </FrameLines>
     </section>
   );
 }

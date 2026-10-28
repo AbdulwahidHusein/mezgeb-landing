@@ -1,7 +1,7 @@
 "use client";
 
-import { ArrowDown } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ArrowDown, FileSearch } from "lucide-react";
+import { FrameLines } from "@/components/frame-lines";
 import { HeroDemo } from "@/components/hero-demo";
 import { useI18n } from "@/components/language-provider";
 import { cn } from "@/lib/utils";
@@ -10,58 +10,86 @@ export function Hero() {
   const { t, isAm } = useI18n();
 
   return (
-    <section
-      id="top"
-      className="relative overflow-hidden border-b border-border"
-      aria-labelledby="hero-heading"
-    >
-      <div
-        className="pointer-events-none absolute inset-0 blueprint-grid opacity-70"
-        aria-hidden="true"
-      />
-
-      <div className="container-site relative px-5 pb-16 pt-14 sm:px-8 sm:pb-20 sm:pt-16 lg:px-10 lg:pt-20">
-        <div
-          className={cn(
-            "mx-auto max-w-3xl border-x border-border px-5 py-10 sm:px-10 sm:py-12 lg:max-w-4xl",
-            isAm && "font-ethiopic"
-          )}
-        >
-          <p className="eyebrow">{t.hero.eyebrow}</p>
-
-          <h1
-            id="hero-heading"
-            className="mt-5 text-[2.35rem] font-semibold leading-[1.15] tracking-tight text-foreground sm:text-5xl lg:text-[3.15rem] lg:leading-[1.12]"
+    <section id="top" className="relative" aria-labelledby="hero-heading">
+      <FrameLines dots="both" className="px-5 py-[72px] sm:px-8 lg:px-12">
+        <div className="relative mx-auto w-full max-w-[984px]">
+          <div
+            className={cn(
+              "flex max-w-[610px] flex-col gap-6 animate-fade-up",
+              isAm && "font-ethiopic"
+            )}
           >
-            {t.hero.headline1}
-            <span className="mt-2 block text-muted-foreground">
-              {t.hero.headline2}
-            </span>
-          </h1>
+            <div className="hero-badge w-fit">
+              <span className="flex size-4 items-center justify-center text-white">
+                <FileSearch className="size-3.5" />
+              </span>
+              <span>{t.hero.eyebrow}</span>
+            </div>
 
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-            {t.hero.body}
-          </p>
+            <h1
+              id="hero-heading"
+              className={cn(
+                "text-[2.5rem] font-medium leading-[1.2] tracking-[-0.22px] text-white sm:text-5xl lg:text-[56px]",
+                !isAm && "font-display"
+              )}
+            >
+              <span className="bg-gradient-to-b from-white to-white/65 bg-clip-text text-transparent">
+                {t.hero.headline1}
+              </span>{" "}
+              <span className="text-[var(--neutral-400)]">{t.hero.headline2}</span>
+            </h1>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Button asChild size="lg">
-              <a href="#pilot">{t.hero.primaryCta}</a>
-            </Button>
-            <Button asChild variant="outline" size="lg">
-              <a href="#how-it-works">
-                {t.hero.secondaryCta}
-                <ArrowDown className="opacity-60" />
+            <p className="headline-regular">{t.hero.caption}</p>
+
+            <p className="paragraph-regular max-w-[540px]">{t.hero.body}</p>
+
+            <div className="flex flex-wrap items-center gap-3 pt-1">
+              <a
+                href="#pilot"
+                className={cn("btn-luna", isAm && "font-ethiopic")}
+              >
+                {t.hero.primaryCta}
               </a>
-            </Button>
+              <a
+                href="#how-it-works"
+                className={cn("btn-luna-outline", isAm && "font-ethiopic")}
+              >
+                {t.hero.secondaryCta}
+                <ArrowDown className="size-4 opacity-70" />
+              </a>
+            </div>
           </div>
-
-          <p className="mt-5 text-sm text-muted-foreground">{t.hero.caption}</p>
         </div>
+      </FrameLines>
 
-        <div className="mt-10 sm:mt-12">
-          <HeroDemo />
+      <div className="line-horizontal mx-auto max-w-[1128px]" />
+
+      <FrameLines dots="bottom" className="px-5 py-8 sm:px-8 lg:px-12">
+        <div className="product-glow mx-auto max-w-[984px]">
+          <div className="browser-chrome relative p-1">
+            <div className="overflow-hidden rounded-[20px] border border-[var(--neutral-800)] bg-[#070709]/90 backdrop-blur-[3px]">
+              <div className="flex items-center gap-3 border-b border-[var(--neutral-800)] bg-[var(--neutral-900)]/80 px-4 py-3">
+                <div className="flex items-center gap-1.5" aria-hidden="true">
+                  <span className="size-2.5 rounded-full bg-[#ff5f57]" />
+                  <span className="size-2.5 rounded-full bg-[#febc2e]" />
+                  <span className="size-2.5 rounded-full bg-[#28c840]" />
+                </div>
+                <div className="mx-auto flex h-7 max-w-md flex-1 items-center justify-center rounded-full border border-[var(--white-6)] bg-[var(--white-2)] px-3">
+                  <p className="truncate font-mono text-[11px] text-[var(--neutral-400)]">
+                    mezgeb.ai / workbench
+                  </p>
+                </div>
+                <div className="hidden w-10 sm:block" aria-hidden="true" />
+              </div>
+              <div className="p-3 sm:p-4">
+                <HeroDemo />
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </FrameLines>
+
+      <div className="line-horizontal mx-auto max-w-[1128px]" />
     </section>
   );
 }

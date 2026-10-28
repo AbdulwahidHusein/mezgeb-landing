@@ -3,27 +3,6 @@
 import { useI18n } from "@/components/language-provider";
 import { cn } from "@/lib/utils";
 
-export function LogoMark({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 32 32"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={cn("h-7 w-7", className)}
-      aria-hidden="true"
-    >
-      <rect x="3" y="5" width="18" height="22" rx="2" fill="#27272A" />
-      <rect x="7" y="10" width="10" height="1.5" rx="0.75" fill="#A1A1AA" />
-      <rect x="7" y="14" width="8" height="1.25" rx="0.6" fill="#71717A" />
-      <rect x="7" y="18" width="9" height="1.25" rx="0.6" fill="#52525B" />
-      <rect x="11" y="3" width="18" height="22" rx="2" fill="#FAFAFA" />
-      <rect x="15" y="9" width="10" height="1.5" rx="0.75" fill="#18181B" />
-      <rect x="15" y="13" width="8" height="1.25" rx="0.6" fill="#3F3F46" />
-      <rect x="15" y="17" width="6" height="1.25" rx="0.6" fill="#52525B" />
-    </svg>
-  );
-}
-
 export function Logo({ className }: { className?: string }) {
   const { t, isAm } = useI18n();
 
@@ -31,20 +10,33 @@ export function Logo({ className }: { className?: string }) {
     <a
       href="#top"
       className={cn(
-        "inline-flex items-center gap-2.5 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+        "relative inline-flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--white-24)]",
         className
       )}
       aria-label={t.brand}
     >
-      <LogoMark />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/mezgeb-mark.png"
+        alt=""
+        width={64}
+        height={88}
+        className="h-16 w-auto shrink-0 sm:h-[72px]"
+        decoding="async"
+      />
       <span
         className={cn(
-          "text-[1.05rem] font-semibold tracking-tight text-foreground",
+          "font-display text-[22px] font-medium tracking-tight text-white",
           isAm && "font-ethiopic"
         )}
       >
-        {t.brand}
+        {t.brandShort}
+        <span>.</span>
       </span>
+      <span
+        className="accent-line absolute bottom-[-34px] left-0"
+        aria-hidden="true"
+      />
     </a>
   );
 }

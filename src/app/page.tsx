@@ -1,4 +1,5 @@
 import { LanguageProvider } from "@/components/language-provider";
+import { SiteAtmosphere } from "@/components/site-atmosphere";
 import { Navigation } from "@/components/navigation";
 import { Hero } from "@/components/hero";
 import { Problem } from "@/components/problem";
@@ -14,19 +15,24 @@ import { Footer } from "@/components/footer";
 export default function Home() {
   return (
     <LanguageProvider>
-      <Navigation />
-      <main>
-        <Hero />
-        <Problem />
-        <Platform />
-        <Language />
-        <UseCases />
-        <Trust />
-        <Pilot />
-        <FAQ />
-        <CTA />
-      </main>
-      <Footer />
+      <div className="relative overflow-x-clip">
+        <SiteAtmosphere />
+        <div className="relative z-[1]">
+          <Navigation />
+          <main>
+            <Hero />
+            <Problem />
+            <Platform />
+            <Language />
+            <UseCases />
+            <Trust />
+            <Pilot />
+            <FAQ />
+            <CTA />
+          </main>
+          <Footer />
+        </div>
+      </div>
     </LanguageProvider>
   );
 }

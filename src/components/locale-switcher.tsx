@@ -10,7 +10,7 @@ export function LocaleSwitcher({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "inline-flex items-center border border-border bg-background",
+        "inline-flex items-center gap-0.5 rounded-[40px] border border-[var(--white-6)] bg-[var(--white-2)] p-0.5",
         className
       )}
       role="group"
@@ -22,10 +22,11 @@ export function LocaleSwitcher({ className }: { className?: string }) {
           type="button"
           onClick={() => setLocale(code)}
           className={cn(
-            "px-2.5 py-1.5 font-mono text-[11px] tracking-wide transition-colors",
+            "rounded-[40px] px-2.5 py-1 text-[12px] font-medium leading-[1.7] transition-colors",
+            code === "am" && "font-ethiopic",
             locale === code
-              ? "bg-secondary text-foreground"
-              : "text-muted-foreground hover:text-foreground"
+              ? "bg-[var(--white-6)] text-white"
+              : "text-[var(--neutral-400)] hover:text-white"
           )}
           aria-pressed={locale === code}
         >

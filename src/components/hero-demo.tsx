@@ -367,7 +367,7 @@ export function HeroDemo() {
   return (
     <div className="w-full">
       <div
-        className="mb-3 flex overflow-x-auto border border-border"
+        className="mb-3 flex overflow-x-auto rounded-[12px] border border-[var(--neutral-800)] bg-[var(--white-2)] p-1"
         role="tablist"
         aria-label="Document type samples"
       >
@@ -379,11 +379,11 @@ export function HeroDemo() {
             aria-selected={active === i}
             onClick={() => setActive(i)}
             className={cn(
-              "shrink-0 border-r border-border px-3 py-2.5 text-[11px] tracking-wide transition-colors last:border-r-0 sm:px-4 sm:text-[12px]",
+              "shrink-0 rounded-[8px] px-3 py-2.5 text-[11px] tracking-wide transition-colors sm:px-4 sm:text-[12px]",
               isAm ? "font-ethiopic" : "font-mono",
               active === i
-                ? "bg-secondary text-foreground"
-                : "bg-background text-muted-foreground hover:bg-muted hover:text-foreground"
+                ? "bg-[var(--white-8)] text-white shadow-[inset_0_-4px_12px_0_var(--white-6)]"
+                : "text-[var(--neutral-400)] hover:bg-[var(--white-4)] hover:text-white"
             )}
           >
             {tab}
@@ -393,14 +393,14 @@ export function HeroDemo() {
 
       <div
         className={cn(
-          "mb-3 flex flex-wrap items-center justify-between gap-2",
+          "mb-3 flex flex-wrap items-center justify-between gap-2 px-1",
           isAm && "font-ethiopic"
         )}
       >
-        <p className="text-[12px] text-muted-foreground">{wb.disclaimer}</p>
+        <p className="text-[12px] text-[var(--neutral-400)]">{wb.disclaimer}</p>
         <p
           className={cn(
-            "text-[11px] text-muted-foreground",
+            "text-[11px] text-[var(--neutral-400)]",
             !isAm && "font-mono"
           )}
         >
@@ -408,7 +408,7 @@ export function HeroDemo() {
         </p>
       </div>
 
-      <div className="grid overflow-hidden rounded-md border border-border lg:grid-cols-2">
+      <div className="grid overflow-hidden rounded-[20px] border border-[var(--neutral-800)] bg-[#070709] lg:grid-cols-2">
         <DocumentPanel sample={sample} />
         <InspectorPanel sample={sample} />
       </div>
@@ -421,11 +421,11 @@ function DocumentPanel({ sample }: { sample: DocSample }) {
   const wb = t.workbench;
 
   return (
-    <div className="border-b border-border bg-[#161618] lg:border-b-0 lg:border-r">
-      <div className="flex items-center justify-between border-b border-border px-4 py-2.5">
+    <div className="border-b border-[var(--neutral-800)] bg-[var(--neutral-900)] lg:border-b-0 lg:border-r">
+      <div className="flex items-center justify-between border-b border-[var(--neutral-800)] px-4 py-2.5">
         <p
           className={cn(
-            "text-[11px] uppercase tracking-[0.1em] text-muted-foreground",
+            "text-[11px] uppercase tracking-[0.1em] text-[var(--neutral-400)]",
             isAm ? "font-ethiopic normal-case tracking-normal" : "font-mono"
           )}
         >
@@ -433,7 +433,7 @@ function DocumentPanel({ sample }: { sample: DocSample }) {
         </p>
         <p
           className={cn(
-            "text-[11px] text-muted-foreground",
+            "text-[11px] text-[var(--neutral-400)]",
             isAm ? "font-ethiopic" : "font-mono"
           )}
         >
@@ -442,7 +442,7 @@ function DocumentPanel({ sample }: { sample: DocSample }) {
       </div>
 
       <div className="blueprint-grid-fine max-h-[560px] overflow-y-auto p-3 sm:p-4">
-        <article className="mx-auto max-w-lg bg-paper px-4 py-5 text-paper-ink shadow-[0_12px_40px_-20px_rgba(0,0,0,0.7)] sm:px-5 sm:py-6">
+        <article className="mx-auto max-w-lg rounded-xl bg-paper px-4 py-5 text-paper-ink shadow-[0_20px_50px_-24px_rgba(0,0,0,0.85)] sm:px-5 sm:py-6">
           <header className="border-b border-paper-line pb-4">
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
@@ -618,10 +618,10 @@ function InspectorPanel({ sample }: { sample: DocSample }) {
 
   return (
     <div className="flex min-h-0 flex-col bg-inspector">
-      <div className="flex items-center justify-between border-b border-border px-4 py-2.5">
+      <div className="flex items-center justify-between border-b border-[var(--neutral-800)] px-4 py-2.5">
         <p
           className={cn(
-            "text-[11px] text-muted-foreground",
+            "text-[11px] text-[var(--neutral-400)]",
             isAm ? "font-ethiopic" : "font-mono"
           )}
         >
@@ -633,11 +633,11 @@ function InspectorPanel({ sample }: { sample: DocSample }) {
             isAm ? "font-ethiopic" : "font-mono"
           )}
         >
-          <span className="inline-flex items-center gap-1.5 text-muted-foreground">
+          <span className="inline-flex items-center gap-1.5 text-[var(--neutral-400)]">
             <span className="size-1.5 rounded-full bg-ok" />
             {wb.checks}
           </span>
-          <span className="inline-flex items-center gap-1.5 text-muted-foreground">
+          <span className="inline-flex items-center gap-1.5 text-[var(--neutral-400)]">
             <span className="size-1.5 rounded-full bg-warn" />
             {wb.review}
           </span>
@@ -646,7 +646,7 @@ function InspectorPanel({ sample }: { sample: DocSample }) {
 
       <div
         className={cn(
-          "grid grid-cols-[1fr_1.35fr_0.85fr] gap-2 border-b border-border bg-[#0a0a0c] px-3 py-2 text-[9px] uppercase tracking-[0.1em] text-muted-foreground sm:px-4 sm:text-[10px]",
+          "grid grid-cols-[1fr_1.35fr_0.85fr] gap-2 border-b border-[var(--neutral-800)] bg-[var(--white-2)] px-3 py-2 text-[9px] uppercase tracking-[0.1em] text-[var(--neutral-400)] sm:px-4 sm:text-[10px]",
           isAm
             ? "font-ethiopic normal-case tracking-normal"
             : "font-mono"
@@ -657,23 +657,23 @@ function InspectorPanel({ sample }: { sample: DocSample }) {
         <span>{wb.status}</span>
       </div>
 
-      <div className="max-h-[340px] divide-y divide-border overflow-y-auto sm:max-h-none">
+      <div className="max-h-[340px] divide-y divide-[var(--neutral-800)] overflow-y-auto sm:max-h-none">
         {sample.extracted.map((row) => (
           <div
             key={row.key}
             className="grid grid-cols-[1fr_1.35fr_0.85fr] gap-2 px-3 py-2.5 sm:px-4 sm:py-3"
           >
-            <p className="font-mono text-[11px] text-muted-foreground sm:text-[12px]">
+            <p className="font-mono text-[11px] text-[var(--neutral-400)] sm:text-[12px]">
               {row.key}
             </p>
             <div className="min-w-0">
-              <p className="font-ethiopic text-[12px] leading-snug text-foreground sm:text-[13px]">
+              <p className="font-ethiopic text-[12px] leading-snug text-white sm:text-[13px]">
                 {row.value}
               </p>
               {row.noteKey && (
                 <p
                   className={cn(
-                    "mt-0.5 text-[10px] text-muted-foreground",
+                    "mt-0.5 text-[10px] text-[var(--neutral-400)]",
                     isAm && "font-ethiopic"
                   )}
                 >
@@ -690,10 +690,10 @@ function InspectorPanel({ sample }: { sample: DocSample }) {
         ))}
       </div>
 
-      <div className="mt-auto border-t border-border bg-[#0a0a0c] px-4 py-3">
+      <div className="mt-auto border-t border-[var(--neutral-800)] bg-[var(--white-2)] px-4 py-3">
         <p
           className={cn(
-            "mb-2 text-[10px] uppercase tracking-[0.12em] text-muted-foreground",
+            "mb-2 text-[10px] uppercase tracking-[0.12em] text-[var(--neutral-400)]",
             isAm
               ? "font-ethiopic normal-case tracking-normal"
               : "font-mono"
@@ -701,7 +701,7 @@ function InspectorPanel({ sample }: { sample: DocSample }) {
         >
           {wb.exportPreview}
         </p>
-        <pre className="overflow-x-auto font-mono text-[11px] leading-relaxed text-muted-foreground">
+        <pre className="overflow-x-auto font-mono text-[11px] leading-relaxed text-[var(--neutral-400)]">
           <code>{sample.json}</code>
         </pre>
       </div>
@@ -722,10 +722,10 @@ function StatusPill({
     tone === "warn" ? "bg-warn" : tone === "info" ? "bg-[#60a5fa]" : "bg-ok";
   const text =
     tone === "warn"
-      ? "text-warn"
+      ? "text-[var(--warn)]"
       : tone === "info"
-        ? "text-[#93c5fd]"
-        : "text-muted-foreground";
+        ? "text-[#8deffc]"
+        : "text-[var(--neutral-400)]";
 
   return (
     <span
